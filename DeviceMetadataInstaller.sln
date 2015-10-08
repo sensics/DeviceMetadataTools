@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeviceMetadataInstallTool",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeviceMetadataInspector", "DeviceMetadataInspector\DeviceMetadataInspector.csproj", "{453D1D70-041F-4DC7-A240-2788B5D24A94}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sensics.SystemUtilities", "Sensics.SystemUtilities\Sensics.SystemUtilities.csproj", "{2AB405F0-2A32-4D92-B832-3F1AE9782651}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{453D1D70-041F-4DC7-A240-2788B5D24A94}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{453D1D70-041F-4DC7-A240-2788B5D24A94}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{453D1D70-041F-4DC7-A240-2788B5D24A94}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2AB405F0-2A32-4D92-B832-3F1AE9782651}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2AB405F0-2A32-4D92-B832-3F1AE9782651}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2AB405F0-2A32-4D92-B832-3F1AE9782651}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2AB405F0-2A32-4D92-B832-3F1AE9782651}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

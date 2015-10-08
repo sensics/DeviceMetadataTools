@@ -25,11 +25,16 @@ namespace Sensics.DeviceMetadataInstaller
             }
         }
         private string _filename;
-
         public MetadataPackage(string filename)
         {
+            var cabFileFactory = new Shell32CabFileFactory();
             _filename = filename;
-            Cab = new CabFile(filename);
+            Cab = cabFileFactory.OpenCab(filename);
+        }
+        public MetadataPackage(string filename, ICabFileFactory cabFileFactory)
+        {
+            _filename = filename;
+            Cab = cabFileFactory.OpenCab(filename);
         }
 
         public string DefaultLocale
@@ -46,7 +51,7 @@ namespace Sensics.DeviceMetadataInstaller
             return new XPathDoc(Cab.OpenTextFile(filename), prefix, namespaceURI);
         }
 
-        private CabFile Cab;
+        private ICabFile Cab;
 
         private XPathDoc PackageInfo
         {
