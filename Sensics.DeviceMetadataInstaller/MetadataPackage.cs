@@ -1,5 +1,4 @@
-﻿using Microsoft.Deployment.Compression.Cab;
-using System;
+﻿using System;
 using System.IO;
 
 namespace Sensics.DeviceMetadataInstaller
@@ -30,7 +29,7 @@ namespace Sensics.DeviceMetadataInstaller
         public MetadataPackage(string filename)
         {
             _filename = filename;
-            Cab = new CabInfo(filename);
+            Cab = new CabFile(filename);
         }
 
         public string DefaultLocale
@@ -44,15 +43,10 @@ namespace Sensics.DeviceMetadataInstaller
 
         private XPathDoc OpenXMLFromCab(string filename, string prefix, string namespaceURI)
         {
-            var files = Cab.GetFiles(filename);
-            if (files.Count != 1)
-            {
-                throw new Exception(String.Format("Couldn't find exactly one {0} file in the metadata package!", filename));
-            }
-            return new XPathDoc(files[0].OpenText(), prefix, namespaceURI);
+            return new XPathDoc(Cab.OpenTextFile(filename), prefix, namespaceURI);
         }
 
-        private CabInfo Cab;
+        private CabFile Cab;
 
         private XPathDoc PackageInfo
         {

@@ -38,6 +38,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CabFile.cs" />
     <Compile Include="MetadataStore.cs" />
     <Compile Include="MetadataPackage.cs" />
     <Compile Include="PathUtilities.cs" />
