@@ -1,23 +1,27 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
+using System.Collections;
+using System.Collections.Generic;
 using System.Reflection;
 
-namespace DeviceMetadataInspector
+namespace DeviceMetadataInstallTool
 {
-    class Program
+
+    class InstallTool
     {
         static void HandleMetadata(IEnumerable<string> files)
         {
+            var store = new Sensics.DeviceMetadataInstaller.MetadataStore();
             foreach (var fn in files)
             {
                 var pkg = new Sensics.DeviceMetadataInstaller.MetadataPackage(fn);
                 Console.WriteLine("{0} - {1} - Default locale: {2}", pkg.ExperienceGUID, pkg.ModelName, pkg.DefaultLocale);
+                store.InstallPackage(pkg);
             }
         }
+
         static void Main(string[] args)
         {
-            //Console.WriteLine("Args size is {0}", args.Length);
             if (args.Length == 0)
             {
                 var assemblyDir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
@@ -27,6 +31,7 @@ namespace DeviceMetadataInspector
             {
                 HandleMetadata(args);
             }
+
         }
     }
 }
