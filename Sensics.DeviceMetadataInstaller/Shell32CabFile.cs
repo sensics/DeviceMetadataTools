@@ -17,78 +17,45 @@ namespace Sensics.DeviceMetadataInstaller
         public TextReader OpenTextFile(string contained)
         {
             var cabFolder = _sh.NameSpace(_cab.PathName);
+            var searchingFor = Path.Combine(_cab.PathName, contained);
+            Shell32.FolderItem srcItem = null;
+
+            // parseName didn't seem to work properly with subdirectories.
+            foreach (Shell32.FolderItem item in cabFolder.Items())
+            {
+                //Debug.WriteLine(string.Format("Got item {0}", item.Path));
+                if (item.Path == searchingFor)
+                {
+                    srcItem = item;
+                }
+            }
+            if (srcItem == null)
+            {
+                throw new FileNotFoundException(string.Format("Could not find file '{0}' inside cab file '{1}'", contained, _cab.PathName));
+            }
+            string text = "";
             using (var destDir = DisposableTempPath.CreateUniqueDirectory())
             {
                 var destFolder = _sh.NameSpace(destDir.PathName);
                 var tempFile = Path.Combine(destDir.PathName, Path.GetFileName(contained));
-                using (var gotChanged = new ManualResetEventSlim())
-                {
-                    using (var fsw = new FileSystemWatcher(destDir.PathName))
+                
+                ShellVolumeCopyReader.CopyItemHereAndRead(_sh, destDir.PathName, srcItem, TimeSpan.FromSeconds(.5),
+                    (stream) =>
                     {
-                        fsw.Changed += delegate (object sender, FileSystemEventArgs e)
+                        using (var sr = new StreamReader(stream))
                         {
-                            Debug.WriteLine("got changed event {0}", e);
-                            gotChanged.Set();
-                        };
-                        destFolder.CopyHere(cabFolder.ParseName(contained), 0 /*4  do not show file copy dialog */);
-                        // Do not proceed until file copy has at least begun.
-                        gotChanged.Wait();
-                    }
-                }
-                // OK, file copy has begin, now try loading.
-                var text = AttemptToReadAllText(tempFile, TimeSpan.FromSeconds(.5));
-#if false
-                if (!File.Exists(tempFile))
-                {
-                    throw new Exception(string.Format("Could not find {0} after supposedly copying it from the cab!", tempFile));
-                }
-#endif
-                return new StringReader(text);
-            }
-        }
-
-        private static void SleepToRetry()
-        {
-            // Yes, not ideal - should be waiting on the file itself.
-            Thread.Sleep(20);
-        }
-
-        private static string AttemptToReadAllText(string filename, TimeSpan timeout)
-        {
-            bool success = false;
-            string ret = "";
-            var sw = Stopwatch.StartNew();
-            do
-            {
-                // Yes, not ideal - should be waiting on the file itself.
-                try
-                {
-                    using (var f = File.Open(filename, FileMode.Open, FileAccess.Read, FileShare.None))
-                    {
-                        // OK, we have the file open.
-                        using (var sr = new StreamReader(f))
-                        {
-                            ret = sr.ReadToEnd();
-                            success = true;
+                            text = sr.ReadToEnd();
                         }
-                    }
-                }
-                catch (System.IO.FileNotFoundException)
-                {
-                    SleepToRetry(); // too early!
-                }
-            } while (!success && sw.Elapsed < timeout);
-            if (!success)
-            {
-                throw new TimeoutException(string.Format("Timeout waiting for {0} to be exclusively readable.", filename));
+                    });
             }
-            return ret;
+
+            return new StringReader(text);
         }
 
         private SystemUtilities.Shell32InstanceWrapper _sh;
         private SystemUtilities.DisposableTempPath _cab;
 
-#region IDisposable Support
+        #region IDisposable Support
 
         private bool disposedValue = false; // To detect redundant calls
 
@@ -112,7 +79,7 @@ namespace Sensics.DeviceMetadataInstaller
             Dispose(true);
         }
 
-#endregion IDisposable Support
+        #endregion IDisposable Support
     }
 
     public sealed class Shell32CabFileFactory : ICabFileFactory
