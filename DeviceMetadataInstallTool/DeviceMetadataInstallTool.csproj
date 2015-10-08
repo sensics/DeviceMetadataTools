@@ -75,6 +75,10 @@
       <Project>{66e1ff34-fdc2-406d-a7bb-dc5f74f1b41c}</Project>
       <Name>Sensics.DeviceMetadataInstaller</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Sensics.SystemUtilities\Sensics.SystemUtilities.csproj">
+      <Project>{2ab405f0-2a32-4d92-b832-3f1ae9782651}</Project>
+      <Name>Sensics.SystemUtilities</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
