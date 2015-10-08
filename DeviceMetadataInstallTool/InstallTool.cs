@@ -1,15 +1,12 @@
 ﻿using System;
-using System.IO;
-using System.Collections;
 using System.Collections.Generic;
-using System.Reflection;
+using System.IO;
 
 namespace DeviceMetadataInstallTool
 {
-
-    class InstallTool
+    internal class InstallTool
     {
-        static void HandleMetadata(IEnumerable<string> files)
+        private static void HandleMetadata(IEnumerable<string> files)
         {
             var store = new Sensics.DeviceMetadataInstaller.MetadataStore();
             foreach (var fn in files)
@@ -20,18 +17,17 @@ namespace DeviceMetadataInstallTool
             }
         }
 
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             if (args.Length == 0)
             {
-                var assemblyDir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-                HandleMetadata(Sensics.DeviceMetadataInstaller.Util.GetMetadataFilesRecursive(assemblyDir));
+                var dir = Directory.GetCurrentDirectory();
+                HandleMetadata(Sensics.DeviceMetadataInstaller.Util.GetMetadataFilesRecursive(dir));
             }
             else
             {
                 HandleMetadata(args);
             }
-
         }
     }
 }
