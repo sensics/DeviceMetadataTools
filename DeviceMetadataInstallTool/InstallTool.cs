@@ -18,18 +18,18 @@ namespace DeviceMetadataInstallTool
 
         private void RecurseMetadata(string directory)
         {
-            HandleMetadata(Sensics.DeviceMetadataInstaller.Util.GetMetadataFilesRecursive(directory));
+            HandleMetadataFiles(Sensics.DeviceMetadataInstaller.Util.GetMetadataFilesRecursive(directory));
         }
 
-        private void HandleMetadata(IEnumerable<string> files)
+        private void HandleMetadataFiles(IEnumerable<string> files)
         {
             foreach (var fn in files)
             {
-                HandleMetadata(fn);
+                HandleMetadataFile(fn);
             }
         }
 
-        private void HandleMetadata(string fn)
+        private void HandleMetadataFile(string fn)
         {
             var pkg = new Sensics.DeviceMetadataInstaller.MetadataPackage(fn, cabFactory);
             Console.WriteLine("- {0} - {1} - Default locale: {2}", pkg.ExperienceGUID, pkg.ModelName, pkg.DefaultLocale);
@@ -53,7 +53,7 @@ namespace DeviceMetadataInstallTool
                     if (Path.GetExtension(arg) == ".devicemetadata-ms")
                     {
                         Console.WriteLine("Processing single file by name: {0}", arg);
-                        tool.HandleMetadata(arg);
+                        tool.HandleMetadataFile(arg);
                     }
                     else if (Directory.Exists(arg))
                     {
