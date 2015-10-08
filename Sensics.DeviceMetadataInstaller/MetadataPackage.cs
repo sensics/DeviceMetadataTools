@@ -1,10 +1,9 @@
-﻿using System;
+﻿using Sensics.CabTools;
+using System;
 using System.IO;
 
 namespace Sensics.DeviceMetadataInstaller
 {
-    
-
     public class MetadataPackage
     {
         private const string DeviceInfoNamespace = "http://schemas.microsoft.com/windows/DeviceMetadata/DeviceInfo/2007/11/";
@@ -24,13 +23,16 @@ namespace Sensics.DeviceMetadataInstaller
                 return Path.GetFileName(_filename);
             }
         }
+
         private string _filename;
+
         public MetadataPackage(string filename)
         {
             var cabFileFactory = new Shell32CabFileFactory();
             _filename = filename;
             Cab = cabFileFactory.OpenCab(filename);
         }
+
         public MetadataPackage(string filename, ICabFileFactory cabFileFactory)
         {
             _filename = filename;
@@ -64,6 +66,7 @@ namespace Sensics.DeviceMetadataInstaller
                 return _PackageInfo;
             }
         }
+
         private XPathDoc _PackageInfo;
 
         public string ExperienceGUID
@@ -93,6 +96,7 @@ namespace Sensics.DeviceMetadataInstaller
                 return _DeviceInfo;
             }
         }
+
         private XPathDoc _DeviceInfo;
 
         public string GetDefaultDeviceInfoString(string element)

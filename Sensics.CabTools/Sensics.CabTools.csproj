@@ -4,17 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{453D1D70-041F-4DC7-A240-2788B5D24A94}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{E3DFA175-5C3D-4646-98F2-93D27A13D0EC}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DeviceMetadataInspector</RootNamespace>
-    <AssemblyName>DeviceMetadataInspector</AssemblyName>
+    <RootNamespace>Sensics.CabTools</RootNamespace>
+    <AssemblyName>Sensics.CabTools</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -24,7 +22,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -38,40 +35,9 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Inspector.cs" />
+    <Compile Include="ICabFile.cs" />
+    <Compile Include="ICabFileFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Sensics.CabTools.Shell32\Sensics.CabTools.Shell32CabFile.csproj">
-      <Project>{a848d006-b14f-4ecf-a2a7-15e4ff7c3d9b}</Project>
-      <Name>Sensics.CabTools.Shell32CabFile</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Sensics.CabTools\Sensics.CabTools.csproj">
-      <Project>{e3dfa175-5c3d-4646-98f2-93d27a13d0ec}</Project>
-      <Name>Sensics.CabTools</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Sensics.DeviceMetadataInstaller\Sensics.DeviceMetadataInstaller.csproj">
-      <Project>{66e1ff34-fdc2-406d-a7bb-dc5f74f1b41c}</Project>
-      <Name>Sensics.DeviceMetadataInstaller</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Sensics.SystemUtilities\Sensics.SystemUtilities.csproj">
-      <Project>{2ab405f0-2a32-4d92-b832-3f1ae9782651}</Project>
-      <Name>Sensics.SystemUtilities</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <COMReference Include="Shell32">
-      <Guid>{50A7E9B0-70EF-11D1-B75A-00A0C90564FE}</Guid>
-      <VersionMajor>1</VersionMajor>
-      <VersionMinor>0</VersionMinor>
-      <Lcid>0</Lcid>
-      <WrapperTool>tlbimp</WrapperTool>
-      <Isolated>False</Isolated>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </COMReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -30,36 +30,29 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.Deployment.Compression, Version=3.0.0.0, Culture=neutral, PublicKeyToken=ce35f76fcda82bad, processorArchitecture=MSIL" />
-    <Reference Include="Microsoft.Deployment.Compression.Cab, Version=3.0.0.0, Culture=neutral, PublicKeyToken=ce35f76fcda82bad, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CabFile.cs" />
     <Compile Include="GlobRecurse.cs" />
     <Compile Include="MetadataStore.cs" />
     <Compile Include="MetadataPackage.cs" />
     <Compile Include="PathUtilities.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Shell32CabFile.cs" />
     <Compile Include="Util.cs" />
     <Compile Include="XPathDoc.cs" />
   </ItemGroup>
   <ItemGroup>
-    <COMReference Include="Shell32">
-      <Guid>{50A7E9B0-70EF-11D1-B75A-00A0C90564FE}</Guid>
-      <VersionMajor>1</VersionMajor>
-      <VersionMinor>0</VersionMinor>
-      <Lcid>0</Lcid>
-      <WrapperTool>tlbimp</WrapperTool>
-      <Isolated>False</Isolated>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </COMReference>
-  </ItemGroup>
-  <ItemGroup>
+    <ProjectReference Include="..\Sensics.CabTools.Shell32\Sensics.CabTools.Shell32CabFile.csproj">
+      <Project>{a848d006-b14f-4ecf-a2a7-15e4ff7c3d9b}</Project>
+      <Name>Sensics.CabTools.Shell32CabFile</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Sensics.CabTools\Sensics.CabTools.csproj">
+      <Project>{e3dfa175-5c3d-4646-98f2-93d27a13d0ec}</Project>
+      <Name>Sensics.CabTools</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Sensics.SystemUtilities\Sensics.SystemUtilities.csproj">
       <Project>{2ab405f0-2a32-4d92-b832-3f1ae9782651}</Project>
       <Name>Sensics.SystemUtilities</Name>

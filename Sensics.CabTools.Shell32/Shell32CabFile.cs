@@ -1,10 +1,8 @@
 ﻿using Sensics.SystemUtilities;
 using System;
-using System.Diagnostics;
 using System.IO;
-using System.Threading;
 
-namespace Sensics.DeviceMetadataInstaller
+namespace Sensics.CabTools
 {
     internal sealed class Shell32CabFile : ICabFile, IDisposable
     {
@@ -38,7 +36,7 @@ namespace Sensics.DeviceMetadataInstaller
             {
                 var destFolder = _sh.NameSpace(destDir.PathName);
                 var tempFile = Path.Combine(destDir.PathName, Path.GetFileName(contained));
-                
+
                 ShellVolumeCopyReader.CopyItemHereAndRead(_sh, destDir.PathName, srcItem, TimeSpan.FromSeconds(.5),
                     (stream) =>
                     {
@@ -80,25 +78,5 @@ namespace Sensics.DeviceMetadataInstaller
         }
 
         #endregion IDisposable Support
-    }
-
-    public sealed class Shell32CabFileFactory : ICabFileFactory
-    {
-        public Shell32CabFileFactory()
-        {
-            _shell = new Sensics.SystemUtilities.Shell32InstanceWrapper();
-        }
-
-        public Shell32CabFileFactory(Shell32InstanceWrapper shell)
-        {
-            _shell = shell;
-        }
-
-        public ICabFile OpenCab(string filename)
-        {
-            return new Shell32CabFile(_shell, filename);
-        }
-
-        private Shell32InstanceWrapper _shell;
     }
 }
