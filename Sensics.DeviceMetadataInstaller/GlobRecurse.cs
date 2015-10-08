@@ -22,12 +22,12 @@ namespace Sensics.DeviceMetadataInstaller
         {
             try
             {
+                foreach (var f in Directory.GetFiles(dir, pattern))
+                {
+                    Files.Add(f);
+                }
                 foreach (var d in Directory.GetDirectories(dir))
                 {
-                    foreach (var f in Directory.GetFiles(d, pattern))
-                    {
-                        Files.Add(f);
-                    }
                     DoSearchDirectory(d, pattern);
                 }
             }
