@@ -8,10 +8,11 @@ namespace DeviceMetadataInstallTool
     {
         private static void HandleMetadata(IEnumerable<string> files)
         {
+            var cabFactory = new Sensics.CabTools.Shell32CabFileFactory();
             var store = new Sensics.DeviceMetadataInstaller.MetadataStore();
             foreach (var fn in files)
             {
-                var pkg = new Sensics.DeviceMetadataInstaller.MetadataPackage(fn);
+                var pkg = new Sensics.DeviceMetadataInstaller.MetadataPackage(fn, cabFactory);
                 Console.WriteLine("{0} - {1} - Default locale: {2}", pkg.ExperienceGUID, pkg.ModelName, pkg.DefaultLocale);
                 store.InstallPackage(pkg);
             }

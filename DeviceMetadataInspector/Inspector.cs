@@ -8,8 +8,7 @@ namespace DeviceMetadataInspector
     {
         private static void HandleMetadata(IEnumerable<string> files)
         {
-            var sh = new Sensics.SystemUtilities.Shell32InstanceWrapper();
-            var cabFactory = new Sensics.CabTools.Shell32CabFileFactory(sh);
+            var cabFactory = new Sensics.CabTools.Shell32CabFileFactory();
             foreach (var fn in files)
             {
                 var pkg = new Sensics.DeviceMetadataInstaller.MetadataPackage(fn, cabFactory);

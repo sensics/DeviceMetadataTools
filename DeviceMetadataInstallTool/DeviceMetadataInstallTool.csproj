@@ -63,6 +63,14 @@
     <None Include="app.manifest" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Sensics.CabTools.Shell32\Sensics.CabTools.Shell32CabFile.csproj">
+      <Project>{a848d006-b14f-4ecf-a2a7-15e4ff7c3d9b}</Project>
+      <Name>Sensics.CabTools.Shell32CabFile</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Sensics.CabTools\Sensics.CabTools.csproj">
+      <Project>{e3dfa175-5c3d-4646-98f2-93d27a13d0ec}</Project>
+      <Name>Sensics.CabTools</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Sensics.DeviceMetadataInstaller\Sensics.DeviceMetadataInstaller.csproj">
       <Project>{66e1ff34-fdc2-406d-a7bb-dc5f74f1b41c}</Project>
       <Name>Sensics.DeviceMetadataInstaller</Name>
