@@ -17,7 +17,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CabTools", "CabTools", "{D5
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sensics.CabTools.Shell32CabFile", "Sensics.CabTools.Shell32\Sensics.CabTools.Shell32CabFile.csproj", "{A848D006-B14F-4ECF-A2A7-15E4FF7C3D9B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sensics.CabTools.DFTCabFile", "Sensics.CabTools.DFTCabFile\Sensics.CabTools.DFTCabFile.csproj", "{A075AA51-7EFC-4DF6-B11D-6459AA9A6701}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sensics.CabTools.DTFCabFile", "Sensics.CabTools.DTFCabFile\Sensics.CabTools.DTFCabFile.csproj", "{A075AA51-7EFC-4DF6-B11D-6459AA9A6701}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Assemblies", "Assemblies", "{9D98604F-740B-4093-BD77-D1E18F4CE3B8}"
 EndProject

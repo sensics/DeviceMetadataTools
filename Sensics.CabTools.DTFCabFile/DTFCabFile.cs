@@ -4,9 +4,9 @@ using System.IO;
 
 namespace Sensics.CabTools
 {
-    public sealed class DFTCabFile : ICabFile
+    public sealed class DTFCabFile : ICabFile
     {
-        public DFTCabFile(string filename)
+        public DTFCabFile(string filename)
         {
             Filename = filename;
             Cab = new CabInfo(filename);

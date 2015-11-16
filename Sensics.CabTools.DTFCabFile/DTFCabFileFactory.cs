@@ -1,10 +1,10 @@
 ﻿namespace Sensics.CabTools
 {
-    public sealed class DFTCabFileFactory : ICabFileFactory
+    public sealed class DTFCabFileFactory : ICabFileFactory
     {
         public ICabFile OpenCab(string filename)
         {
-            return new DFTCabFile(filename);
+            return new DTFCabFile(filename);
         }
     }
 }

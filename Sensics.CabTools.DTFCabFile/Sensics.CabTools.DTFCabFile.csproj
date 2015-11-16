@@ -37,8 +37,8 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DFTCabFile.cs" />
-    <Compile Include="DFTCabFileFactory.cs" />
+    <Compile Include="DTFCabFile.cs" />
+    <Compile Include="DTFCabFileFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
